@@ -313,23 +313,23 @@ userProfileData.forEach((row, index) => {
     // Check for special CHIST* mappings.
     if (newSubjectCode.includes('CHIST1')) {
       foundMatch = true;
-      matchedSubCodeVal = 'DCHIS1';
+      matchedSubCodeVal = 'DCI11';
       console.log(`  => Special mapping: NEW Subject Code contains 'CHIST1', using "${matchedSubCodeVal}"`);
     } else if (newSubjectCode.includes('CHIST2')) {
       foundMatch = true;
-      matchedSubCodeVal = 'DCHIS2';
+      matchedSubCodeVal = 'DCI21';
       console.log(`  => Special mapping: NEW Subject Code contains 'CHIST2', using "${matchedSubCodeVal}"`);
     } else if (newSubjectCode.includes('CHIST3A')) {
       foundMatch = true;
-      matchedSubCodeVal = 'DCHS3A';
+      matchedSubCodeVal = 'DC3A1';
       console.log(`  => Special mapping: NEW Subject Code contains 'CHIST3A', using "${matchedSubCodeVal}"`);
     } else if (newSubjectCode.includes('CHIST3B')) {
       foundMatch = true;
-      matchedSubCodeVal = 'DCHS3B';
+      matchedSubCodeVal = 'DC3B1';
       console.log(`  => Special mapping: NEW Subject Code contains 'CHIST3B', using "${matchedSubCodeVal}"`);
     } else if (newSubjectCode.includes('CHIST3')) {
       foundMatch = true;
-      matchedSubCodeVal = 'DCHIS3';
+      matchedSubCodeVal = 'DCI31';
       console.log(`  => Special mapping: NEW Subject Code contains 'CHIST3', using "${matchedSubCodeVal}"`);
     } else if (newSubjectCode === "CHI") {
       foundMatch = true;

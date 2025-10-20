@@ -24,6 +24,7 @@ const userWorkbook = xlsx.readFile(userProfileFile);
 // Assuming the data is in the first worksheet
 const userSheetName = userWorkbook.SheetNames[0];
 const userWorksheet = userWorkbook.Sheets[userSheetName];
+
 // Convert the worksheet to JSON, using defval to capture empty cells as ""
 const userJsonData = xlsx.utils.sheet_to_json(userWorksheet, { defval: "" });
 
@@ -254,3 +255,25 @@ xlsx.utils.book_append_sheet(newStudentWorkbook, newStudentWorksheet, studentShe
 xlsx.writeFile(newStudentWorkbook, studentProfileUpdated);
 
 console.log(`New student profile appended and sorted file created: '${studentProfileUpdated}'`);
+
+// -------------------------------------------
+// FINAL STEP: Remove '-' from each cell in the user_profile file
+// -------------------------------------------
+// Now that all other processing is done, loop through all cells in the userWorksheet,
+// remove any '-' from string values, and write back the modified workbook.
+Object.keys(userWorksheet).forEach((cell) => {
+  // Skip Excel metadata properties that begin with '!'
+  if (cell[0] === '!') return;
+  // Check if the cell value is a string and contains a hyphen
+  if (typeof userWorksheet[cell].v === 'string' && userWorksheet[cell].v.includes('-')) {
+    userWorksheet[cell].v = userWorksheet[cell].v.replace(/-/g, '');
+  }
+});
+
+// Option 1: Overwrite the original user profile file with the modified sheet
+xlsx.writeFile(userWorkbook, userProfileFile);
+
+// Option 2 (Alternate): Save to a new file instead, for example:
+// xlsx.writeFile(userWorkbook, 'user_profile_no_dashes.xlsx');
+
+console.log(`User profile file '${userProfileFile}' has been updated to remove hyphens.`);
